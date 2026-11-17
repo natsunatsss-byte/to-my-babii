@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A little corner of the internet made only for you.">
+  <meta name="theme-color" content="#12000a">
+  <title>For My Babi ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="locked">
+
+  <!-- Background layers -->
+  <div class="aurora"><span></span><span></span><span></span></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="progress" id="progress"></div>
+  <div id="petals"></div>
+
+  <!-- Lock screen -->
+  <div id="lock">
+    <form id="lockForm" class="glass" onsubmit="return false">
+      <div class="lock-heart">❤️</div>
+      <h1 class="grad">Hi Babi</h1>
+      <p>Type our special word to come in.</p>
+      <input id="lockInput" type="password" placeholder="Special word" autocomplete="off">
+      <button class="btn" type="submit">Enter ♡</button>
+      <small id="lockError" role="alert"></small>
+    </form>
+  </div>
+
+<!-- Music Picker -->
+<div id="picker" hidden>
+  <div class="picker-box glass">
+    <h2 class="grad">Pick a song for us</h2>
+    <p>Choose a song to accompany your memories.</p>
+
+    <div class="songs">
+      <button class="song" type="button"
+        data-src="music/song1.mp3"
+        data-title="Too Good To Say Goodbye">
+        <span class="note">♪</span>
+        <b>Too Good To Say Goodbye</b>
+        <small>Bruno Mars</small>
+      </button>
+
+      <button class="song" type="button"
+        data-src="music/song2.mp3"
+        data-title="Oo">
+        <span class="note">♪</span>
+        <b>Oo</b>
+        <small>Up Dharma Down</small>
+      </button>
+
+      <button class="song" type="button"
+        data-src="music/song3.mp3"
+        data-title="Rainbow">
+        <span class="note">♪</span>
+        <b>Rainbow</b>
+        <small>South Border</small>
+      </button>
+    </div>
+
+    <button class="skip" id="skipMusic" type="button">
+      No music, thanks
+    </button>
+  </div>
+</div>
+
+<audio id="bgm" loop preload="none"></audio>
+
+<div id="musicBar" class="music-bar glass" hidden>
+  <button id="musicToggle" type="button"
+    aria-label="Pause or play music">❚❚</button>
+  <span id="musicTitle"></span>
+  <button id="musicChange" type="button"
+    aria-label="Change song">⇄</button>
+</div>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <p class="eyebrow">made only for you</p>
+      <h1 class="grad big">For My Babi ❤️</h1>
+      <p class="typed" id="typed" aria-label="A little corner of the internet made only for you."></p>
+
+      <div class="counter glass" id="counter" hidden>
+        <b id="days">0</b>
+        <span>days since our first picture</span>
+      </div>
+
+      <button id="openBtn" class="btn">Open ♡</button>
+
+      <span class="scroll-hint" aria-hidden="true">scroll ↓</span>
+    </section>
+
+    <!-- Chapter 1 -->
+    <section class="section" id="story">
+      <p class="eyebrow">chapter one</p>
+      <h2 class="grad">Where It Started 🤍</h2>
+      <figure class="card tilt reveal solo">
+        <img data-lb src="images/first.jpeg" alt="Two people walking side by side down a sunny street, seen from behind" loading="lazy">
+        <figcaption>Our first picture together.</figcaption>
+        <span class="glare"></span>
+      </figure>
+    </section>
+
+    <!-- Chapter 2: photo stack -->
+    <section class="section">
+      <p class="eyebrow">chapter two</p>
+      <h2 class="grad">Us 🤍</h2>
+      <div class="deck reveal" id="deck" tabindex="0" role="button" aria-label="Tap to flip through our photos">
+        <figure class="film">
+          <img src="images/us1.jpeg" alt="The two of us leaning together, her laughing with her eyes closed" loading="lazy">
+          <figcaption>Us, being us.</figcaption>
+        </figure>
+        <figure class="film">
+          <img src="images/us2.jpeg" alt="Her resting her head on me with a soft smile" loading="lazy">
+          <figcaption>Leaning on each other.</figcaption>
+        </figure>
+        <figure class="film">
+          <img src="images/us3.jpeg" alt="Her looking up and to the side, calm, next to me" loading="lazy">
+          <figcaption>Quiet moments with you.</figcaption>
+        </figure>
+      </div>
+      <p class="hint">tap the photo to flip through 🤍</p>
+    </section>
+
+    
+<!-- Chapter 3: sliding photo gallery -->
+<section class="section" id="gallery">
+  <p class="eyebrow">chapter three</p>
+  <h2 class="grad">Every Version of You<br>is My Favorite</h2>
+
+  <div class="rail">
+    <figure class="card tilt rail-card">
+      <img data-lb style="--pos:50% 55%" src="images/her1.jpeg"
+        alt="Her winking and smiling in a blue top" loading="lazy">
+      <figcaption>That wink.</figcaption>
+      <span class="glare"></span>
+    </figure>
+
+    <figure class="card tilt rail-card">
+      <img data-lb style="--pos:25% 55%" src="images/her2.jpeg"
+        alt="Her sticking her tongue out while holding a phone" loading="lazy">
+      <figcaption>Silly you.</figcaption>
+      <span class="glare"></span>
+    </figure>
+
+    <figure class="card tilt rail-card">
+      <img data-lb style="--pos:52% center" src="images/her3.jpeg"
+        alt="Her pouting with her hand on her cheek" loading="lazy">
+      <figcaption>Pouty Babi.</figcaption>
+      <span class="glare"></span>
+    </figure>
+
+    <figure class="card tilt rail-card">
+      <img data-lb style="--pos:50% 35%" src="images/her4.jpeg"
+        alt="Her smiling shyly while looking down" loading="lazy">
+      <figcaption>Shy smile, my favorite.</figcaption>
+      <span class="glare"></span>
+    </figure>
+  </div>
+
+  <p class="hint">swipe to see every version of you → 🤍</p>
+</section>
+
+
+    <!-- Chapter 4: calls -->
+    <section class="section" id="calls">
+      <p class="eyebrow">chapter four</p>
+      <h2 class="grad">Dreamy Webcam Photos🌙</h2>
+      <div class="rail">
+        <figure class="card tilt rail-card">
+          <img data-lb src="images/call1.jpeg" alt="Her on a video call wearing glasses and making a peace sign" loading="lazy">
+          <figcaption>Peace sign and all ✌️</figcaption>
+          <span class="glare"></span>
+        </figure>
+        <figure class="card tilt rail-card">
+          <img data-lb src="images/call2.jpeg" alt="Her on a video call with little hearts above her head" loading="lazy">
+          <figcaption>Hearts for you.</figcaption>
+          <span class="glare"></span>
+        </figure>
+      </div>
+      <p class="hint">swipe →</p>
+    </section>
+
+    <!-- Reasons -->
+    <section class="section" id="reasons">
+      <p class="eyebrow">tap to flip</p>
+      <h2 class="grad">Why I Like You ❤️</h2>
+      <div class="flips">
+        <button class="flip reveal" type="button">
+          <span class="flip-inner">
+            <span class="face front"><em>01</em><b>Reason</b></span>
+            <span class="face back">Your smile can instantly make my day better.</span>
+          </span>
+        </button>
+        <button class="flip reveal" type="button">
+          <span class="flip-inner">
+            <span class="face front"><em>02</em><b>Reason</b></span>
+            <span class="face back">You make ordinary moments feel special.</span>
+          </span>
+        </button>
+        <button class="flip reveal" type="button">
+          <span class="flip-inner">
+            <span class="face front"><em>03</em><b>Reason</b></span>
+            <span class="face back">I love how cute and genuine you are.</span>
+          </span>
+        </button>
+        <button class="flip reveal" type="button">
+          <span class="flip-inner">
+            <span class="face front"><em>04</em><b>Reason</b></span>
+            <span class="face back">You always stay in my thoughts.</span>
+          </span>
+        </button>
+        <button class="flip reveal" type="button">
+          <span class="flip-inner">
+            <span class="face front"><em>05</em><b>Reason</b></span>
+            <span class="face back">Because you're simply Amiku.</span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Secret buttons -->
+    <section class="section secret">
+      <button class="btn" data-open="letterPopup">💌 Secret Letter</button>
+      <button class="btn" data-open="strongPopup">💗 One more thing</button>
+    </section>
+
+    <!-- Ending -->
+    <section class="section ending">
+      <h2 class="grad">For My Babi ❤️</h2>
+      <p class="reveal">No matter what happens,
+I hope life becomes gentle with you.
+
+And whenever it doesn't,
+I hope you remember that your Tantan
+will always be cheering for you.</p>
+      <small class="foot">made with ❤️ by Tantan</small>
+    </section>
+
+  </main>
+
+  <!-- Photo viewer -->
+  <div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lb-close" aria-label="Close photo">✕</button>
+    <button class="lb-nav prev" aria-label="Previous photo">‹</button>
+    <figure>
+      <img id="lbImg" alt="">
+      <figcaption id="lbCap"></figcaption>
+    </figure>
+    <button class="lb-nav next" aria-label="Next photo">›</button>
+  </div>
+
+  <!-- Popup 1: Secret letter -->
+  <div id="letterPopup" class="popup" role="dialog" aria-modal="true" aria-label="Secret letter">
+    <div class="popup-content">
+      <button class="close" aria-label="Close letter">✕</button>
+      <h2 class="grad">For My Babi</h2>
+      <p>Hi babi,</p>
+      <p>If you're reading this, I just want you to know that no matter what happens, naa ra gyud ko diri.</p>
+      <p>I know life gets heavy sometimes. There will be days nga kapoy kaayo ka, stressed ka, or gusto nalang nimo magpahuway gikan sa tanan.</p>
+      <p>But I hope you never forget how important you are.</p>
+      <p>You don't have to be perfect.
+You don't have to carry everything alone.</p>
+      <p>Pwede ka mopahuway.
+Pwede ka mohilak.
+Pwede ka mapul-an.</p>
+      <p>And through all of that, naa ra gihapon ko.</p>
+      <p>Every version of you is beautiful to me.</p>
+      <p>Your smile.
+Your eyes.
+Your cute expressions.
+Even the little things nga wala nimo napansin sa imong kaugalingon.</p>
+      <p>You are loved more than you know.</p>
+      <p>And even though I'm still courting you, one thing I know for sure is that I genuinely care about you.</p>
+      <p>Always.</p>
+      <p>Love,
+Tantan ❤️</p>
+    </div>
+  </div>
+
+  <!-- Popup 2: Strong and consistent -->
+  <div id="strongPopup" class="popup" role="dialog" aria-modal="true" aria-label="One more thing">
+    <div class="popup-content">
+      <button class="close" aria-label="Close message">✕</button>
+      <h2 class="grad">For my Babi</h2>
+      <p>I just want you to know that I see how hard you try, even on the days nobody sees it.</p>
+      <p>You keep showing up. Even when you're tired, you keep going. It's not that you never get worn out. It's that you're truly strong, and I don't think you realize how strong you are.</p>
+      <p>Thank you for being consistent. For not giving up, for doing your best, and for staying kind and real through all of it. I'm so proud of you.</p>
+      <p>Never forget that you're allowed to rest, but you don't have to go through anything alone. I'm right here, cheering for you.</p>
+      <p>I love you.</p>
+      <p>Love,
+Tantan ❤️</p>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
