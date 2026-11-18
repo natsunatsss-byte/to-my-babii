@@ -243,6 +243,41 @@ button:focus-visible, input:focus-visible, .deck:focus-visible {
 .typed::after { content: '|'; margin-left: 2px; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
+/* ---------- What's new badge ---------- */
+.whats-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-line);
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #fff;
+  font: 500 0.85rem 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.whats-new[hidden] { display: none; }
+.whats-new:hover { transform: translateY(-2px); background: rgba(255, 107, 157, 0.25); }
+
+.pulse,
+.env .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--pink);
+  box-shadow: 0 0 0 0 rgba(255, 107, 157, 0.7);
+  animation: ping 1.6s ease-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes ping {
+  to { box-shadow: 0 0 0 12px rgba(255, 107, 157, 0); }
+}
+
 /* ---------- Counters ---------- */
 .counters {
   display: flex;
@@ -438,6 +473,65 @@ button:focus-visible, input:focus-visible, .deck:focus-visible {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(14px);
   font-size: 1rem;
+}
+
+/* ---------- Open When envelopes ---------- */
+.envelopes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.env {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 170px;
+  padding: 36px 16px 20px;
+  border-radius: 22px;
+  border: 1px solid var(--glass-line);
+  background: linear-gradient(160deg, rgba(255, 107, 157, 0.3), rgba(196, 113, 237, 0.2));
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+/* the envelope flap */
+.env::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48%;
+  background: rgba(255, 255, 255, 0.1);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.45s ease;
+}
+
+.env:hover {
+  transform: translateY(-5px) rotate(-1deg);
+  box-shadow: 0 20px 50px rgba(255, 46, 99, 0.35);
+}
+.env:hover::before { transform: scaleY(0.35); }
+
+.env-emoji { font-size: 2rem; position: relative; }
+.env b { font: italic 500 1.1rem 'Playfair Display', serif; position: relative; }
+.env small { font-size: 0.75rem; opacity: 0.65; position: relative; }
+
+.env .dot {
+  position: absolute;
+  top: 14px;
+  right: 14px;
 }
 
 /* ---------- Secret buttons + ending ---------- */
@@ -701,6 +795,10 @@ button:focus-visible, input:focus-visible, .deck:focus-visible {
     padding: 12px 18px;
   }
 
+  .envelopes { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .env { min-height: 150px; padding: 34px 10px 16px; }
+  .env b { font-size: 1rem; }
+
   #picker { padding: 16px; }
 
   .picker-box {
@@ -759,7 +857,7 @@ button:focus-visible, input:focus-visible, .deck:focus-visible {
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .aurora span, .petal, .scroll-hint, .lock-heart, .grad { animation: none; }
+  .aurora span, .petal, .scroll-hint, .lock-heart, .grad, .pulse, .env .dot { animation: none; }
   .reveal { opacity: 1; translate: none; scale: 1; transition: none; }
-  .card, .film, .flip-inner { transition: none; }
+  .card, .film, .flip-inner, .env, .env::before { transition: none; }
 }

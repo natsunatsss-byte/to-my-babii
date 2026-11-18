@@ -258,6 +258,13 @@ function smoothScrollTo(targetY) {
   window.addEventListener(ev, () => cancelAnimationFrame(scrollRaf), { passive: true })
 );
 
+function scrollToId(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  const y = target.getBoundingClientRect().top + window.scrollY - 20;
+  smoothScrollTo(y);
+}
+
 // ---------- Open button ----------
 const openBtn = document.getElementById("openBtn");
 
@@ -266,10 +273,79 @@ openBtn.addEventListener("click", () => {
   void openBtn.offsetWidth; // restarts the animation
   openBtn.classList.add("pop");
 
-  const target = document.getElementById("story");
-  const y = target.getBoundingClientRect().top + window.scrollY - 20;
-  setTimeout(() => smoothScrollTo(y), 220);
+  setTimeout(() => scrollToId("story"), 220);
 });
+
+// ---------- Content from content.js ----------
+const CONTENT = (typeof SITE_CONTENT !== "undefined" && SITE_CONTENT) || {};
+const openWhenList = Array.isArray(CONTENT.openWhen) ? CONTENT.openWhen : [];
+
+// "What's new" badge
+const whatsNewBtn = document.getElementById("whatsNew");
+if (CONTENT.whatsNew && openWhenList.length) {
+  document.getElementById("whatsNewText").textContent = CONTENT.whatsNew;
+  whatsNewBtn.hidden = false;
+  whatsNewBtn.addEventListener("click", () => scrollToId("openwhen"));
+}
+
+// "Open When..." envelopes
+const whenPopup = document.getElementById("whenPopup");
+const whenTitle = document.getElementById("whenTitle");
+const whenBody = document.getElementById("whenBody");
+
+function openLetter(item, button) {
+  whenTitle.textContent = item.title;
+  whenBody.replaceChildren();
+
+  String(item.text || "")
+    .split(/\n\s*\n/)
+    .forEach((chunk) => {
+      const p = document.createElement("p");
+      p.textContent = chunk.trim();
+      whenBody.appendChild(p);
+    });
+
+  openPopup(whenPopup, button);
+}
+
+function renderOpenWhen() {
+  const section = document.getElementById("openwhen");
+  const box = document.getElementById("envelopes");
+
+  if (!openWhenList.length) {
+    section.hidden = true;
+    return;
+  }
+
+  openWhenList.forEach((item) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "env reveal";
+
+    if (item.isNew) {
+      const dot = document.createElement("span");
+      dot.className = "dot";
+      dot.title = "New";
+      btn.appendChild(dot);
+    }
+
+    const emoji = document.createElement("span");
+    emoji.className = "env-emoji";
+    emoji.textContent = item.emoji || "💌";
+
+    const title = document.createElement("b");
+    title.textContent = item.title;
+
+    const hint = document.createElement("small");
+    hint.textContent = "tap to open";
+
+    btn.append(emoji, title, hint);
+    btn.addEventListener("click", () => openLetter(item, btn));
+    box.appendChild(btn);
+  });
+}
+
+renderOpenWhen();
 
 // ---------- Reveal on scroll ----------
 const revealObserver = new IntersectionObserver(

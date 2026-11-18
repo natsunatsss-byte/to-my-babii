@@ -75,6 +75,11 @@
 
     <!-- Hero -->
     <section class="hero">
+      <button class="whats-new" id="whatsNew" type="button" hidden>
+        <span class="pulse"></span>
+        <span id="whatsNewText"></span>
+      </button>
+
       <p class="eyebrow">made only for you</p>
       <h1 class="grad big">For My Babi ❤️</h1>
       <p class="typed" id="typed" aria-label="A little corner of the internet made only for you."></p>
@@ -250,6 +255,14 @@
       </div>
     </section>
 
+    <!-- Open When... letters (filled from content.js) -->
+    <section class="section" id="openwhen">
+      <p class="eyebrow">tap an envelope</p>
+      <h2 class="grad">Open When... 💌</h2>
+      <div class="envelopes" id="envelopes"></div>
+      <p class="hint">more letters coming soon 🤍</p>
+    </section>
+
     <!-- Secret buttons -->
     <section class="section secret">
       <button class="btn" data-open="letterPopup">💌 Secret Letter</button>
@@ -279,6 +292,15 @@ will always be cheering for you.</p>
       <figcaption id="lbCap"></figcaption>
     </figure>
     <button class="lb-nav next" aria-label="Next photo">›</button>
+  </div>
+
+  <!-- Popup: Open When letter (filled by script) -->
+  <div id="whenPopup" class="popup" role="dialog" aria-modal="true" aria-label="Open when letter">
+    <div class="popup-content">
+      <button class="close" aria-label="Close letter">✕</button>
+      <h2 class="grad" id="whenTitle"></h2>
+      <div id="whenBody"></div>
+    </div>
   </div>
 
   <!-- Popup 1: Secret letter -->
@@ -324,6 +346,8 @@ Tantan ❤️</p>
     </div>
   </div>
 
+  <!-- content.js must come BEFORE script.js -->
+  <script src="content.js" defer></script>
   <script src="script.js" defer></script>
 </body>
 </html>
