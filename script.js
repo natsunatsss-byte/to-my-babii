@@ -4,8 +4,11 @@ console.log("script loaded ✅");
 // Special word for the lock screen. Use "" to turn the lock off.
 const PASSWORD = "yemen";
 
-// Date of your first picture, as YYYY-MM-DD. Use "" to hide the day counter.
+// Date of your first picture, as YYYY-MM-DD. Use "" to hide this counter.
 const START_DATE = "2026-07-12";
+
+// Date you started courting her, as YYYY-MM-DD. Use "" to hide this counter.
+const COURT_START_DATE = "2026-04-04";
 // ===============================================
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -99,10 +102,34 @@ lockForm.addEventListener("submit", (e) => {
   }
 });
 
-// ---------- Typewriter intro + day counter ----------
+// ---------- Typewriter intro + day counters ----------
 const typedEl = document.getElementById("typed");
 const TEXT = "A little corner of the internet made only for you.";
 let introStarted = false;
+
+function runCounter(dateStr, boxId, outId) {
+  if (!dateStr) return;
+
+  const start = new Date(dateStr + "T00:00:00");
+  const total = Math.floor((Date.now() - start) / 86400000);
+  if (isNaN(total) || total < 0) return;
+
+  document.getElementById(boxId).hidden = false;
+  const out = document.getElementById(outId);
+
+  if (reduceMotion) {
+    out.textContent = total;
+    return;
+  }
+
+  let n = 0;
+  const step = Math.max(1, Math.ceil(total / 60));
+  const c = setInterval(() => {
+    n = Math.min(total, n + step);
+    out.textContent = n;
+    if (n >= total) clearInterval(c);
+  }, 25);
+}
 
 function startIntro() {
   if (introStarted) return;
@@ -118,25 +145,8 @@ function startIntro() {
     }, 45);
   }
 
-  if (START_DATE) {
-    const start = new Date(START_DATE);
-    const total = Math.floor((Date.now() - start) / 86400000);
-    if (!isNaN(total) && total >= 0) {
-      document.getElementById("counter").hidden = false;
-      const out = document.getElementById("days");
-      if (reduceMotion) {
-        out.textContent = total;
-      } else {
-        let n = 0;
-        const step = Math.max(1, Math.ceil(total / 60));
-        const c = setInterval(() => {
-          n = Math.min(total, n + step);
-          out.textContent = n;
-          if (n >= total) clearInterval(c);
-        }, 25);
-      }
-    }
-  }
+  runCounter(START_DATE, "counter", "days");
+  runCounter(COURT_START_DATE, "courtCounter", "courtDays");
 }
 
 if (!PASSWORD || alreadyUnlocked) {

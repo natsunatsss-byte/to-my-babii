@@ -243,13 +243,22 @@ button:focus-visible, input:focus-visible, .deck:focus-visible {
 .typed::after { content: '|'; margin-left: 2px; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
+/* ---------- Counters ---------- */
+.counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-bottom: 26px;
+}
+
 .counter {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 14px 28px;
   border-radius: 22px;
-  margin-bottom: 26px;
+  min-width: 140px;
 }
 .counter[hidden] { display: none; }
 .counter b {
@@ -685,6 +694,11 @@ button:focus-visible, input:focus-visible, .deck:focus-visible {
   .section h2 {
     font-size: clamp(1.7rem, 7vw, 2.3rem);
     margin-bottom: 26px;
+  }
+
+  .counter {
+    min-width: 130px;
+    padding: 12px 18px;
   }
 
   #picker { padding: 16px; }
