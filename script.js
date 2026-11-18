@@ -10,7 +10,7 @@ const START_DATE = "2026-07-12";
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const canHover = window.matchMedia("(hover: hover)").matches;
-const isSmallScreen = window.matchMedia("(max-width: 600px)").matches
+const isSmallScreen = window.matchMedia("(max-width: 600px)").matches;
 
 // ---------- Music ----------
 const picker = document.getElementById("picker");
@@ -71,7 +71,7 @@ musicToggle.addEventListener("click", () => {
   }
 });
 
-musicChange.addEventListener("click", showPicker);;
+musicChange.addEventListener("click", showPicker);
 
 // ---------- Lock screen ----------
 const lock = document.getElementById("lock");
@@ -258,7 +258,7 @@ openBtn.addEventListener("click", () => {
 
   const target = document.getElementById("story");
   const y = target.getBoundingClientRect().top + window.scrollY - 20;
-  setTimeout(() => smoothScrollTo(y), 220); // short pause so the button press is seen
+  setTimeout(() => smoothScrollTo(y), 220);
 });
 
 // ---------- Reveal on scroll ----------

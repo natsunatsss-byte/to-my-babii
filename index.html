@@ -33,53 +33,43 @@
     </form>
   </div>
 
-<!-- Music Picker -->
-<div id="picker" hidden>
-  <div class="picker-box glass">
-    <h2 class="grad">Pick a song for us</h2>
-    <p>Choose a song to accompany your memories.</p>
+  <!-- Music picker -->
+  <div id="picker" hidden>
+    <div class="picker-box glass">
+      <h2 class="grad">Pick a song for us</h2>
+      <p>Choose a song to accompany your memories.</p>
 
-    <div class="songs">
-      <button class="song" type="button"
-        data-src="music/song1.mp3"
-        data-title="Too Good To Say Goodbye">
-        <span class="note">♪</span>
-        <b>Too Good To Say Goodbye</b>
-        <small>Bruno Mars</small>
-      </button>
+      <div class="songs">
+        <button class="song" type="button" data-src="music/song1.mp3" data-title="Too Good To Say Goodbye">
+          <span class="note">♪</span>
+          <b>Too Good To Say Goodbye</b>
+          <small>Bruno Mars</small>
+        </button>
 
-      <button class="song" type="button"
-        data-src="music/song2.mp3"
-        data-title="Oo">
-        <span class="note">♪</span>
-        <b>Oo</b>
-        <small>Up Dharma Down</small>
-      </button>
+        <button class="song" type="button" data-src="music/song2.mp3" data-title="Oo">
+          <span class="note">♪</span>
+          <b>Oo</b>
+          <small>Up Dharma Down</small>
+        </button>
 
-      <button class="song" type="button"
-        data-src="music/song3.mp3"
-        data-title="Rainbow">
-        <span class="note">♪</span>
-        <b>Rainbow</b>
-        <small>South Border</small>
-      </button>
+        <button class="song" type="button" data-src="music/song3.mp3" data-title="Rainbow">
+          <span class="note">♪</span>
+          <b>Rainbow</b>
+          <small>South Border</small>
+        </button>
+      </div>
+
+      <button class="skip" id="skipMusic" type="button">No music, thanks</button>
     </div>
-
-    <button class="skip" id="skipMusic" type="button">
-      No music, thanks
-    </button>
   </div>
-</div>
 
-<audio id="bgm" loop preload="none"></audio>
+  <audio id="bgm" loop preload="none"></audio>
 
-<div id="musicBar" class="music-bar glass" hidden>
-  <button id="musicToggle" type="button"
-    aria-label="Pause or play music">❚❚</button>
-  <span id="musicTitle"></span>
-  <button id="musicChange" type="button"
-    aria-label="Change song">⇄</button>
-</div>
+  <div id="musicBar" class="music-bar glass" hidden>
+    <button id="musicToggle" type="button" aria-label="Pause or play music">❚❚</button>
+    <span id="musicTitle"></span>
+    <button id="musicChange" type="button" aria-label="Change song">⇄</button>
+  </div>
 
   <main>
 
@@ -131,59 +121,84 @@
       <p class="hint">tap the photo to flip through 🤍</p>
     </section>
 
-    
-<!-- Chapter 3: sliding photo gallery -->
-<section class="section" id="gallery">
-  <p class="eyebrow">chapter three</p>
-  <h2 class="grad">Every Version of You<br>is My Favorite</h2>
+    <!-- Chapter 3: sliding photo gallery -->
+    <section class="section" id="gallery">
+      <p class="eyebrow">chapter three</p>
+      <h2 class="grad">Every Version of You<br>is My Favorite</h2>
 
-  <div class="rail">
-    <figure class="card tilt rail-card">
-      <img data-lb style="--pos:50% 55%" src="images/her1.jpeg"
-        alt="Her winking and smiling in a blue top" loading="lazy">
-      <figcaption>That wink.</figcaption>
-      <span class="glare"></span>
-    </figure>
+      <div class="rail">
+        <figure class="card tilt rail-card">
+          <img data-lb style="--pos:50% 55%" src="images/her1.jpeg" alt="Her winking and smiling in a blue top" loading="lazy">
+          <figcaption>That wink.</figcaption>
+          <span class="glare"></span>
+        </figure>
 
-    <figure class="card tilt rail-card">
-      <img data-lb style="--pos:25% 55%" src="images/her2.jpeg"
-        alt="Her sticking her tongue out while holding a phone" loading="lazy">
-      <figcaption>Silly you.</figcaption>
-      <span class="glare"></span>
-    </figure>
+        <figure class="card tilt rail-card">
+          <img data-lb style="--pos:25% 55%" src="images/her2.jpeg" alt="Her sticking her tongue out while holding a phone" loading="lazy">
+          <figcaption>Silly you.</figcaption>
+          <span class="glare"></span>
+        </figure>
 
-    <figure class="card tilt rail-card">
-      <img data-lb style="--pos:52% center" src="images/her3.jpeg"
-        alt="Her pouting with her hand on her cheek" loading="lazy">
-      <figcaption>Pouty Babi.</figcaption>
-      <span class="glare"></span>
-    </figure>
+        <figure class="card tilt rail-card">
+          <img data-lb style="--pos:52% center" src="images/her3.jpeg" alt="Her pouting with her hand on her cheek" loading="lazy">
+          <figcaption>Pouty Babi.</figcaption>
+          <span class="glare"></span>
+        </figure>
 
-    <figure class="card tilt rail-card">
-      <img data-lb style="--pos:50% 35%" src="images/her4.jpeg"
-        alt="Her smiling shyly while looking down" loading="lazy">
-      <figcaption>Shy smile, my favorite.</figcaption>
-      <span class="glare"></span>
-    </figure>
-  </div>
+        <figure class="card tilt rail-card">
+          <img data-lb style="--pos:50% 35%" src="images/her4.jpeg" alt="Her smiling shyly while looking down" loading="lazy">
+          <figcaption>Shy smile, my favorite.</figcaption>
+          <span class="glare"></span>
+        </figure>
 
-  <p class="hint">swipe to see every version of you → 🤍</p>
-</section>
+        <figure class="card tilt rail-card">
+          <img data-lb style="--pos:55% 45%" src="images/her5.jpeg" alt="Her puffing out her cheeks in a cute pout" loading="lazy">
+          <figcaption>Puffy cheeks.</figcaption>
+          <span class="glare"></span>
+        </figure>
 
+        <figure class="card tilt rail-card">
+          <img data-lb style="--pos:45% 50%" src="images/her6.jpeg" alt="Her looking calmly toward the camera" loading="lazy">
+          <figcaption>Calm Babi.</figcaption>
+          <span class="glare"></span>
+        </figure>
 
-    <!-- Chapter 4: calls -->
+        <figure class="card tilt rail-card">
+          <img data-lb style="--pos:60% 45%" src="images/her7.jpeg" alt="Her winking with a small smile" loading="lazy">
+          <figcaption>Another wink.</figcaption>
+          <span class="glare"></span>
+        </figure>
+      </div>
+
+      <p class="hint">swipe to see every version of you → 🤍</p>
+    </section>
+
+    <!-- Chapter 4: webcam photos -->
     <section class="section" id="calls">
       <p class="eyebrow">chapter four</p>
-      <h2 class="grad">Dreamy Webcam Photos🌙</h2>
+      <h2 class="grad">Dreamy Webcam Photos 🌙</h2>
       <div class="rail">
         <figure class="card tilt rail-card">
           <img data-lb src="images/call1.jpeg" alt="Her on a video call wearing glasses and making a peace sign" loading="lazy">
           <figcaption>Peace sign and all ✌️</figcaption>
           <span class="glare"></span>
         </figure>
+
         <figure class="card tilt rail-card">
           <img data-lb src="images/call2.jpeg" alt="Her on a video call with little hearts above her head" loading="lazy">
           <figcaption>Hearts for you.</figcaption>
+          <span class="glare"></span>
+        </figure>
+
+        <figure class="card tilt rail-card">
+          <img data-lb style="--pos:42% 42%" src="images/call3.jpeg" alt="Her on a video call in glasses, holding a phone, with hearts above her head" loading="lazy">
+          <figcaption>Glasses and hearts 🤍</figcaption>
+          <span class="glare"></span>
+        </figure>
+
+        <figure class="card tilt rail-card">
+          <img data-lb style="--pos:42% 40%" src="images/call4.jpeg" alt="Her on a video call in glasses with hearts above her head" loading="lazy">
+          <figcaption>Cutie in glasses.</figcaption>
           <span class="glare"></span>
         </figure>
       </div>
